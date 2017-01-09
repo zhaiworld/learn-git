@@ -1,0 +1,93 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Test",
+		"_postman_id": "bf0e8cfe-2248-63b5-8b54-e12320f91feb",
+		"description": "example",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "查询群成员{315100111111}",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests[\"Status equals 200\"] = responseJSON.statusCode === \"200\";",
+							"}",
+							"catch (e) { }",
+							"tests[\"Body contains resultMap\"] = responseBody.has(\"resultMap\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://10.0.19.17:8080/smt/rest/memMessage/getMember/315100111111",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "查询群成员-不存在的情况",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests[\"Status equals 200\"] = responseJSON.statusCode === \"100\";",
+							"}",
+							"catch (e) { }"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://10.0.19.17:8080/smt/rest/memMessage/getMember/3151002323",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "查询群成员-错误的参数",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"var responseJSON;",
+							"try {",
+							"    responseJSON = JSON.parse(responseBody); ",
+							"    tests[\"Status equals 200\"] = responseJSON.statusCode === \"400\";",
+							"}",
+							"catch (e) { }"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://10.0.19.17:8080/smt/rest/memMessage/getMember/92932ajfd",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
